@@ -133,6 +133,8 @@ public class Trendyol_ProductToAdd {
         // Kanka bak buraya aciklama ekledim, bakalim Jenkins gorecek mi bakalım?
         //suan görünüyo süperrrrrrrrrrrrrrr
 
+        // Test otomatik calisacak mi?
+
         //*******************************************************************************************
 
         // 1. Sayfadaki tüm ürün kartlarını 'data-testid' kullanarak bir listeye doldurur.
