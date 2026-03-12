@@ -1,5 +1,6 @@
 package Trendyol;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test; // DOĞRU OLAN BU (api.Test)
 import org.junit.jupiter.api.AfterEach;
@@ -10,7 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.junit.jupiter.api.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-
+import io.qameta.allure.Step;
+import io.qameta.allure.Description;
 import java.time.Duration;
 
 import java.time.Duration;
@@ -24,6 +26,7 @@ public class Trendyol_ProductToAdd {
     WebDriver driver;
 
         @BeforeEach
+        @Description("Trendyol Testi")
         public void setUp(){
 
             // 1. Chrome için gerekli olan sürücü (driver) dosyalarını otomatik olarak indirir ve kurar.
