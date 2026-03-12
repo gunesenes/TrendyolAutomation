@@ -30,7 +30,8 @@ public class Trendyol_ProductToAdd {
     public void setUp() {
 
         // 1. Chrome için gerekli olan sürücü (driver) dosyalarını otomatik olarak indirir ve kurar.
-        WebDriverManager.chromedriver().setup();
+        // Mevcut satırı bununla değiştir:
+        WebDriverManager.chromedriver().browserVersion("145.0.7632.160").setup();
 
         // 2. Yeni bir Chrome tarayıcı penceresi oluşturur (Tarayıcıyı fiziksel olarak açar).
         driver = new ChromeDriver();
