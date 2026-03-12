@@ -135,6 +135,8 @@ public class Trendyol_ProductToAdd {
 
         // Test otomatik calisacak mi?
         // Test otomatik calisacak mi 2 ?
+        // Test otomatik calisacak mi 4 ?
+        // Test otomatik calisacak mi 5 ?
 
         //*******************************************************************************************
 
