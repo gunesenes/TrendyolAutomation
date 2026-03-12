@@ -25,25 +25,25 @@ public class Trendyol_ProductToAdd {
     // Tarayıcıyı kontrol edecek olan WebDriver arayüzünden (Interface) bir değişken tanımlar.
     WebDriver driver;
 
-        @BeforeEach
-        @Description("Trendyol Testi")
-        public void setUp(){
+    @BeforeEach
+    @Description("Trendyol Testi")
+    public void setUp() {
 
-            // 1. Chrome için gerekli olan sürücü (driver) dosyalarını otomatik olarak indirir ve kurar.
-            WebDriverManager.chromedriver().setup();
+        // 1. Chrome için gerekli olan sürücü (driver) dosyalarını otomatik olarak indirir ve kurar.
+        WebDriverManager.chromedriver().setup();
 
-            // 2. Yeni bir Chrome tarayıcı penceresi oluşturur (Tarayıcıyı fiziksel olarak açar).
-            driver = new ChromeDriver();
+        // 2. Yeni bir Chrome tarayıcı penceresi oluşturur (Tarayıcıyı fiziksel olarak açar).
+        driver = new ChromeDriver();
 
-            // Belirtilen web adresine (Trendyol) gider ve sayfanın yüklenmesini başlatır.
-            driver.get("https://www.trendyol.com/");
+        // Belirtilen web adresine (Trendyol) gider ve sayfanın yüklenmesini başlatır.
+        driver.get("https://www.trendyol.com/");
 
-            // 3. Açılan tarayıcı penceresini ekranı kaplayacak şekilde tam boyut yapar.
-            driver.manage().window().maximize();
+        // 3. Açılan tarayıcı penceresini ekranı kaplayacak şekilde tam boyut yapar.
+        driver.manage().window().maximize();
 
-            // 4. Elemanların yüklenmesi için 10 saniye boyunca "akıllı bekleme" süresi tanımlar.
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        }
+        // 4. Elemanların yüklenmesi için 10 saniye boyunca "akıllı bekleme" süresi tanımlar.
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
 
     @Test
     // JUnit veya TestNG kütüphanesiyle çalıştırılacak olan ilk test metodunu tanımlar.
@@ -81,7 +81,7 @@ public class Trendyol_ProductToAdd {
         String actualData = driver.getTitle();
 
         // 3. Beklenen başlık ile gerçek başlığı karşılaştırır; uyuşmazsa testi "FAILED" yapar.
-        Assert.assertEquals(expectedData,actualData);
+        Assert.assertEquals(expectedData, actualData);
 
         //*******************************************************************************************
 
@@ -110,13 +110,13 @@ public class Trendyol_ProductToAdd {
         //*******************************************************************************************
 
         // 1. Arama sonucunda görmeyi beklediğimiz anahtar kelimeyi tanımlar.
-        String expectedSearch ="Laptop";
+        String expectedSearch = "Laptop";
 
         // 2. Sayfanın başındaki "Laptop" yazısını (h1 başlığı) 'data-testid' ile yakalar.
         WebElement actualSearch = driver.findElement(By.xpath("//h1[@data-testid='title']"));
 
         // 3. Beklenen kelime ile ekranda yazan başlığı karşılaştırır; tutmazsa testi "FAILED" yapar.
-        Assert.assertEquals(expectedSearch,actualSearch.getText());
+        Assert.assertEquals(expectedSearch, actualSearch.getText());
 
         //*******************************************************************************************
 
@@ -209,7 +209,7 @@ public class Trendyol_ProductToAdd {
         WebElement actualBasketText = driver.findElement(By.xpath("//div[contains(@class, 'basket-header-title')]"));
 
         // 3. Beklediğimiz "Sepetim (1 Ürün)" yazısı ile ekrandaki gerçek yazıyı kıyaslar; uyuşmazsa testi "FAILED" yapar.
-        Assert.assertEquals(expectedBasketText,actualBasketText.getText());
+        Assert.assertEquals(expectedBasketText, actualBasketText.getText());
 
         //*******************************************************************************************
 
@@ -422,7 +422,7 @@ public class Trendyol_ProductToAdd {
         WebElement adressSubmit = driver.findElement(By.xpath("//button[@type='submit' and text()='Kaydet']"));
 
         // 2. Butona tıklar; bu işlem girdiğin tüm adres bilgilerini Trendyol veritabanına gönderir.
-        adressSubmit.click();
+        js.executeScript("arguments[0].click();", adressSubmit);
 
         try {
             Thread.sleep(1500);
@@ -460,8 +460,17 @@ public class Trendyol_ProductToAdd {
 
         //*******************************************************************************************
 
+        // ... (Sözleşme onaylama kodların burada biter)
 
-       //yanlışlıkla ödeme yapmamak için ödeme butonuna tıklama pasif
+        // 4. Pencerenin kapanması için bekle
+        Thread.sleep(3000);
+
+
+            String adresTitle = "Test adres54f32";
+            WebElement adressCheck = driver.findElement(By.xpath("//strong[.='Test adres54f32']"));
+            Assert.assertEquals(adresTitle,adressCheck.getText());
+
+        //yanlışlıkla ödeme yapmamak için ödeme butonuna tıklama pasif
      /*
 
         // 1. İçinde "Ödeme Yap" yazan bir span barındıran butonu (button) akıllı XPath ile bulur.
@@ -474,6 +483,7 @@ public class Trendyol_ProductToAdd {
     */
 
     }
+
     public void sehirSec(String sehirAdi) throws InterruptedException {
 
         // 1. Şehir listesini açan ana kutucuğu (dropdown) 'name' niteliğiyle bulur ve tıklar.
@@ -551,11 +561,15 @@ public class Trendyol_ProductToAdd {
         System.out.println("Seçilen mahalle: " + mahalleAdi);
     }
 
-        @AfterEach
-        public void close(){
-            //Sayfayı kapat
+    @AfterEach
+    public void close() {
+        if (driver != null) {
+            // Test bittiğinde (Hatalı veya Başarılı) ekran görüntüsünü Allure raporuna gömer
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            io.qameta.allure.Allure.addAttachment("Test Sonu Ekran Görüntüsü", new java.io.ByteArrayInputStream(screenshot));
             driver.quit();
         }
 
 
+    }
 }
