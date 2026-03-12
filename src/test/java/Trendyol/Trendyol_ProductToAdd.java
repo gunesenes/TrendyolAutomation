@@ -130,6 +130,8 @@ public class Trendyol_ProductToAdd {
             throw new RuntimeException(e);
         }
 
+        // Kanka bak buraya aciklama ekledim, bakalim Jenkins gorecek mi?
+
         //*******************************************************************************************
 
         // 1. Sayfadaki tüm ürün kartlarını 'data-testid' kullanarak bir listeye doldurur.
