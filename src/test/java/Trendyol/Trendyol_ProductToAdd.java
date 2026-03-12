@@ -130,7 +130,7 @@ public class Trendyol_ProductToAdd {
             throw new RuntimeException(e);
         }
 
-        // Kanka bak buraya aciklama ekledim, bakalim Jenkins gorecek mi22?
+        // Kanka bak buraya aciklama ekledim, bakalim Jenkins gorecek mi bakalım?
 
         //*******************************************************************************************
 
