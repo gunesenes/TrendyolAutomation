@@ -395,14 +395,16 @@ public class Trendyol_ProductToAdd {
 
         //*******************************************************************************************
 
-        // 1. Adres formundaki "Adres Başlığı" (örn: Ev, İş) giriş alanını 'name' niteliğiyle bulur.
-        WebElement adressTitle = driver.findElement(By.xpath("//input[@name='addressName']"));
+        // 1. Rastgele bir sayı üretelim (0 ile 9999 arası)
+        int rastgeleSayi = (int)(Math.random() * 10000);
 
-        // 2. Önce kutuya tıklar; bu, imlecin "Adres Başlığı" alanına odaklanmasını (focus) sağlar.
-        adressTitle.click();
+        // 2. Başlığı kısa tutalım (Örn: "Adres7421" -> Toplam 9 karakter, sınırın çok altında)
+        String dinamikBaslik = "Adres" + rastgeleSayi;
 
-        // 3. Kutuya "Test adres54f32" başlığını yazar.
-        adressTitle.sendKeys("Test adres54f32");
+        // 3. Gerisi aynı:
+        WebElement adressTitleBox = driver.findElement(By.xpath("//input[@name='addressName']"));
+        adressTitleBox.click();
+        adressTitleBox.sendKeys(dinamikBaslik);
 
         //*******************************************************************************************
 
@@ -468,9 +470,9 @@ public class Trendyol_ProductToAdd {
         Thread.sleep(3000);
 
 
-            String adresTitle = "Test adres54f32";
-            WebElement adressCheck = driver.findElement(By.xpath("//strong[.='Test adres54f32']"));
-            Assert.assertEquals(adresTitle,adressCheck.getText());
+        // 3. Assert (Doğrulama) kısmında da aynı değişkeni kullan:
+        WebElement adressCheck = driver.findElement(By.xpath("//strong[.='" + dinamikBaslik + "']"));
+        Assert.assertEquals(dinamikBaslik, adressCheck.getText());
 
         //yanlışlıkla ödeme yapmamak için ödeme butonuna tıklama pasif
      /*
