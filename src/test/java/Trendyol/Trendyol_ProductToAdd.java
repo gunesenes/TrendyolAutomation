@@ -148,8 +148,8 @@ public class Trendyol_ProductToAdd {
         // 1. Sayfadaki tüm ürün kartlarını 'data-testid' kullanarak bir listeye doldurur.
         List<WebElement> products = driver.findElements(By.xpath("//a[@data-testid='product-card']"));
 
-        // 2. Listenin içinden 5. sıradaki (index 4) laptopu seçer.
-        WebElement fourProduct = products.get(4);
+        // 2. Listenin içinden 5. sıradaki (index 3) laptopu seçer.
+        WebElement fourProduct = products.get(3);
 
         // 3. Seçilen ürünün üzerine tıklar ve ürün detay sayfasını açar.
         fourProduct.click();
