@@ -271,17 +271,16 @@ public class Trendyol_ProductToAdd {
 
         //*******************************************************************************************
 
-        // 1. Ödeme/Onay sayfasındaki "Ödemeyi Yap" veya "Kaydet ve Devam Et" butonunun metin içeriğini class ismiyle bulur.
-        WebElement checkOut = driver.findElement(By.className("checkout-button-text-content"));
+        WebElement chekoutClick = driver.findElement(By.xpath("//p[text()='Sepeti Onayla']"));
 
-        // 2. Butona tıklar ve artık ödeme sürecini (kart bilgilerine geçişi) başlatır.
-        checkOut.click();
+        // 1. Önce butona doğru bir kaydır (Scroll)
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", chekoutClick);
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        // 2. Kısa bir nefes aldır (0.5 saniye)
+        Thread.sleep(500);
+
+        // 3. JavaScript ile "bam bam" tıkla (Önünde engel olsa bile tıklar)
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", chekoutClick);
 
         //*******************************************************************************************
 
