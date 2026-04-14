@@ -259,7 +259,7 @@ public class Trendyol_ProductToAdd {
         WebElement loginPassword = driver.findElement(By.id("login-password"));
 
         // 2. Kutuya şifreyi ("cesibam38") yazar ve klavyeden "ENTER" tuşuna basarak girişi tamamlar.
-        loginPassword.sendKeys("cesibam38" + Keys.ENTER);
+        loginPassword.sendKeys("gfdgfdgf" + Keys.ENTER);
 
         //*******************************************************************************************
 
